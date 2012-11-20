@@ -1,0 +1,8 @@
+Code
+
+
+Femi  = 2: Read and parse
+Cezar = 5: HTML output
+Clay  = 4 + 2: Linear Regression and helping with Read and parse 
+Shane = 3: Read and Prune
+Jakob = 1: Main group
