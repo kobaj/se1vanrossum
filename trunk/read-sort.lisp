@@ -22,8 +22,9 @@
 
 ;TODO WRITE SOMETHING TO REMOVE ALL WHITESPACE FROM THE FILE
 (defun read-file-and-prune (filename)
-  (prune(parse-analysis-req(cdr(packets-set '(#\<,#\A,#\R,#\>) 
+  (parse-analysis-req(cdr(packets-set '(#\<,#\A,#\R,#\>) 
                (str->chrs
-                (car (file->string "in_file.txt" state))))))))
+                (car (file->string "in_file.txt" state)))))))
 
-(defun prune (reqs tree))
+(defun prune (reqs tree)
+  nil)
