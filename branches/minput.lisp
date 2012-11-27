@@ -11,7 +11,7 @@
 ; state = file->string state
 (defun break-on-<sr> (filename state)
   (let* ((rawinput (car (file->string filename state)))
-         (srsplit (tokens '("<sr>" "</sr>") (words rawinput))))
+         (srsplit (packets "<sr>" (words rawinput))))
     (cdr srsplit)))
 
 ; (extract-fields xs)
