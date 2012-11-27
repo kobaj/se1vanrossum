@@ -9,27 +9,12 @@
 ; this fuction takes a list of lists where each list of strings where each
 ;list contains the ticker, the closing price and the trade date. Then it builds an AVL
 ;tree using the tk as the key, and the closing price and trade date as the data
-(defun build tree (xs)
-  (let* ((tk (caar xs))
-         (cp (cadr(car xs)))
-         (td (cddr(car xs)))
-         (key (chrs->str (car(tokens '(#\< #\t #\k #\>)(str->chrs tk)))))
-         (data (list cp td)))
-    (if (consp xs)
-        (avl-insert(build-tree (cdr xs) key data))
-        (empty-tree)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(defun build-tree (xs)
+  (if (consp xs)
+      (let* ((tk (caar xs))
+             (cp (cadr(car xs)))
+             (td (caddr(car xs)))
+             (key (chrs->str (car(tokens '(#\< #\t #\k #\>)(str->chrs tk)))))
+             (data (list cp td)))
+        (tree key data (build-tree (cdr xs)) (build-tree (cddr xs))))
+      (empty-tree)))
