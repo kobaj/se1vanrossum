@@ -14,17 +14,27 @@
 ; will be the stuff we need
 (defun parse-analysis-req (reqs)
   (if (consp reqs)
-      (cons (chrs->str(car reqs)) (cddr reqs))
-      )
-  nil)
+      (cons (cdddr (car reqs)) (parse-analysis-req (cddr reqs)))
+  nil))
 
+(defun to-search-structure (xs)
+  (if (consp xs)
+      (cons (chrs->str (car xs)) (to-search-structure(cdr xs)))
+  nil))
 
+(defun split-csv-style (data)
+  (if (consp data)
+      (cons (to-search-structure (packets #\, (car data))) 
+            (split-csv-style (cdr data)))
+      nil))
 
 ;TODO WRITE SOMETHING TO REMOVE ALL WHITESPACE FROM THE FILE
 (defun read-file-and-prune (filename)
-  (parse-analysis-req(cdr(packets-set '(#\<,#\A,#\R,#\>) 
-               (str->chrs
-                (car (file->string "in_file.txt" state)))))))
+  (split-csv-style
+   (parse-analysis-req
+   (cdr(packets-set '(#\<,#\A,#\R,#\>) 
+       (str->chrs (car (file->string filename state)))
+       )))))
 
 (defun prune (reqs tree)
   nil)
