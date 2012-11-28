@@ -36,5 +36,35 @@
        (str->chrs (car (file->string filename state)))
        )))))
 
+
+(defun get-start (start tree)
+  (if (equal (avl-retrieve tree start) nil)
+     (get-start (avl-retrieve tree (+1 start)))
+     (avl-retrieve start tree)))
+
+(defun get-end (end tree)
+  (if (equal (avl-retrieve tree start) nil)
+     (get-end (avl-retrieve tree (-1 start)))
+     (avl-retrieve start tree)))
+
+(defun get-by-date-helper (start end tree)
+  (if (equal start end)
+
+
+(defun get-by-dates (start end tree)
+    (if (equal start end)
+        nil
+        (cons (avl-retrieve start tree) (get-by-dates (+1 start) end tree))))
+
+      
+
+
 (defun prune (reqs tree)
-  nil)
+  (if (consp reqs)
+      (let* ((ticker (car reqs))
+             (start (cadr reqs))
+             (end (caddr reqs))))
+      (if (equal nil (avl-retrieve tree ticker))
+          nil
+          (get-by-dates (start end (avl-retrieve tree ticker))))
+      nil))
