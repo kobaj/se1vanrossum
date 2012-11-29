@@ -5,7 +5,6 @@
 
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "list-utilities" :dir :teachpacks)
-(include-book "tester-avl-tree")
 (set-state-ok t)
 
 
@@ -66,6 +65,10 @@
         (get-by-dates (1+ start) end tree 
                       (get-by-dates-helper start tree ret-tree)))))
 
+(defun make-tree (tree)
+   (avl-insert (empty-tree) "GOOG" (avl-insert (empty-tree) 20121115 320 ))
+  
+  
        
 ; After the retrieval file is parsed
 ; Prepare the data to search the tree
