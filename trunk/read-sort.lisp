@@ -7,7 +7,6 @@
 (include-book "list-utilities" :dir :teachpacks)
 (include-book "tester-avl-tree")
 (set-state-ok t)
- 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DATE SHIZNIT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -27,10 +26,6 @@
          (day (dgts->int (subseq date-dgts 7 8)))
          (year (dgts->int (subseq date-dgts 0 4))))
          (dgts->int(fmt-date-helper year mnth day))))
-
-
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;NOW TO GET THE CRAP OUTTA TREE;;;;;;;;;;;;;;;;;;;;;;;;
 
