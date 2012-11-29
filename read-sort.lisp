@@ -5,8 +5,84 @@
 
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "list-utilities" :dir :teachpacks)
+(include-book "tester-avl-tree")
 (set-state-ok t)
  
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DATE SHIZNIT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun check-day (date)
+  (if (equal 31 (dgts->int (subseq (int->dgts date) 7 8)))
+      t
+      nil))
+      
+(defun fmt-date-helper (year mnth day)
+  (if (equal 12 mnth)
+      (append (int->dgts (1+ year)) '(0 1 0 1))
+   (append (int->dgts year) (int->dgts (1+ mnth))  '(0 1))))
+  
+(defun fmt-date (date)
+  (let* ((date-dgts  (int->dgts date))
+         (mnth (dgts->int (subseq date-dgts 5 6)))
+         (day (dgts->int (subseq date-dgts 7 8)))
+         (year (dgts->int (subseq date-dgts 0 4))))
+         (dgts->int(fmt-date-helper year mnth day))))
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;NOW TO GET THE CRAP OUTTA TREE;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Gets the start
+(defun get-start (start tree)
+  (if (equal (avl-retrieve tree start) nil)
+     (get-start tree (1+ start))
+     (avl-retrieve start tree)))
+
+; Not really going to be used for this project
+; Gets the last date listed in subtree
+(defun get-end (end tree)
+  (if (equal (avl-retrieve tree end) nil)
+     (get-end (1- end) tree )
+     (avl-retrieve end tree)))
+
+
+; Function inserts the date and data into
+; the new tree for output to html
+(defun get-by-dates-helper (date tree ret-tree)
+  (if (avl-retrieve date tree)
+      (avl-insert ret-tree date tree) ;insert data into new tree
+      ret-tree))
+  
+
+; Searching subtree for the corret dates
+; First check if we have matched the start 
+; make sure date format is correct
+(defun get-by-dates (start end tree ret-tree)
+    (if (equal start end)
+        nil
+        (if (check-day start)
+            (let* ((new-start (fmt-date start)))
+            (get-by-dates (1+ new-start) end tree 
+             (get-by-dates-helper new-start tree ret-tree)))
+        (get-by-dates (1+ start) end tree 
+                      (get-by-dates-helper start tree ret-tree)))))
+
+       
+; After the retrieval file is parsed
+; Prepare the data to search the tree
+; Once the correct ticker name is found
+(defun prune (reqs tree)
+  (if (consp reqs)
+      (let* ((ticker (car reqs))
+             (start (cadr reqs))
+             (end (caddr reqs)))
+      (if (equal nil (avl-retrieve tree ticker))
+          nil
+          (get-by-dates start end (avl-retrieve tree ticker) (empty-tree))));subtree with dates
+      nil))
+
 
 
 ;So here we will pretty much have a list
@@ -17,54 +93,25 @@
       (cons (cdddr (car reqs)) (parse-analysis-req (cddr reqs)))
   nil))
 
+; Get the data into the proper structure for
+; Traversing tree
 (defun to-search-structure (xs)
   (if (consp xs)
       (cons (chrs->str (car xs)) (to-search-structure(cdr xs)))
   nil))
 
+; Just plain csv splitter to you know
+; split comma delited stuff
 (defun split-csv-style (data)
   (if (consp data)
       (cons (to-search-structure (packets #\, (car data))) 
             (split-csv-style (cdr data)))
       nil))
 
-;TODO WRITE SOMETHING TO REMOVE ALL WHITESPACE FROM THE FILE
-(defun read-file-and-prune (filename)
+; Reads in file and sends to pruner
+(defun read-req-file (filename)
   (split-csv-style
    (parse-analysis-req
    (cdr(packets-set '(#\<,#\A,#\R,#\>) 
        (str->chrs (car (file->string filename state)))
        )))))
-
-
-(defun get-start (start tree)
-  (if (equal (avl-retrieve tree start) nil)
-     (get-start (avl-retrieve tree (+1 start)))
-     (avl-retrieve start tree)))
-
-(defun get-end (end tree)
-  (if (equal (avl-retrieve tree start) nil)
-     (get-end (avl-retrieve tree (-1 start)))
-     (avl-retrieve start tree)))
-
-(defun get-by-date-helper (start end tree)
-  (if (equal start end)
-
-
-(defun get-by-dates (start end tree)
-    (if (equal start end)
-        nil
-        (cons (avl-retrieve start tree) (get-by-dates (+1 start) end tree))))
-
-      
-
-
-(defun prune (reqs tree)
-  (if (consp reqs)
-      (let* ((ticker (car reqs))
-             (start (cadr reqs))
-             (end (caddr reqs))))
-      (if (equal nil (avl-retrieve tree ticker))
-          nil
-          (get-by-dates (start end (avl-retrieve tree ticker))))
-      nil))
