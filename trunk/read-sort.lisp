@@ -11,21 +11,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DATE SHIZNIT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun check-day (date)
-  (if (equal 31 (dgts->int (subseq (int->dgts date) 7 8)))
+  (if (equal 31 (dgts->int (subseq (int->dgts date) 6 8)))
       t
       nil))
       
 (defun fmt-date-helper (year mnth day)
   (if (equal 12 mnth)
       (append (int->dgts (1+ year)) '(0 1 0 1))
-   (append (int->dgts year) (int->dgts (1+ mnth))  '(0 1))))
+   (if (< mnth 9)
+   (append (int->dgts year) (cons 0 (int->dgts (1+ mnth)))  '(0 1))    
+   (append (int->dgts year) (int->dgts (1+ mnth))  '(0 1)))))
   
 (defun fmt-date (date)
   (let* ((date-dgts  (int->dgts date))
-         (mnth (dgts->int (subseq date-dgts 5 6)))
-         (day (dgts->int (subseq date-dgts 7 8)))
+         (mnth (dgts->int (subseq date-dgts 4 6)))
+         (day (dgts->int (subseq date-dgts 6 8)))
          (year (dgts->int (subseq date-dgts 0 4))))
-         (dgts->int(fmt-date-helper year mnth day))))
+         (dgts->int (fmt-date-helper year mnth day))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;NOW TO GET THE CRAP OUTTA TREE;;;;;;;;;;;;;;;;;;;;;;;;
 
