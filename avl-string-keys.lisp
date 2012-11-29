@@ -196,7 +196,7 @@
        (or (= (height (right (right tr))) 
               (height (left (right tr))))
            (= (height (right (right tr))) 
-                      (+ 1 (height (left (right tr)))))))))
+                      (+ 1 (height (left (right tr))))))))
 
 (defun left-rotatable? (tr)
   (and (tree? tr)
