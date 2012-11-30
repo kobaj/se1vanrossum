@@ -63,12 +63,16 @@
 ; make sure date format is correct
 (defun get-by-dates (start end tree ret-tree)
     (if (equal start end)
-        nil
+        ret-tree
         (let* ((start-date (if (check-day start) 
                                (fmt-date start)
-                               start)))
+                               start))
+               (old-ret-tree (avl-retrieve tree start-date))
+               (new-ret-tree (if (equal old-ret-tree nil)
+                                 ret-tree
+                                 (avl-insert ret-tree start-date (cdr old-ret-tree)))))
            (get-by-dates (plus_one_date start-date) end tree 
-             (get-by-dates-helper start-date tree ret-tree)))))
+             new-ret-tree))))
 
 
 (defun prune-helper (reqs tree)
@@ -79,7 +83,7 @@
              (sub-tree (cdr start-tree))
              (clean-tree (avl-delete tree ticker)))
       (if (equal nil sub-tree)
-          (avl-insert clean-tree ticker (empty-tree)) 
+          clean-tree 
           (avl-insert clean-tree ticker (get-by-dates start end sub-tree (empty-tree))));subtree with dates
   ))
        
