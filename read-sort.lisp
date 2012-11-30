@@ -11,7 +11,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DATE SHIZNIT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun check-day (date)
-  (if (equal 31 (dgts->int (subseq (int->dgts date) 6 8)))
+  (if (equal 31 (str->int (subseq date 6 8)))
       t
       nil))
       
@@ -23,11 +23,14 @@
    (append (int->dgts year) (int->dgts (1+ mnth))  '(0 1)))))
   
 (defun fmt-date (date)
-  (let* ((date-dgts  (int->dgts date))
+  (let* ((date-dgts  (int->dgts (str->int date)))
          (mnth (dgts->int (subseq date-dgts 4 6)))
          (day (dgts->int (subseq date-dgts 6 8)))
          (year (dgts->int (subseq date-dgts 0 4))))
-         (dgts->int (fmt-date-helper year mnth day))))
+         (int->str (dgts->int (fmt-date-helper year mnth day)))))
+
+(defun plus_one_date (date)
+  (int->str (1+ (str->int date))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;NOW TO GET THE CRAP OUTTA TREE;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -50,7 +53,7 @@
 (defun get-by-dates-helper (date-in tree ret-tree)
   (let* ((date date-in)
          (old-tree (avl-retrieve tree date)))
-  (if (old-tree)
+  (if (equal old-tree nil)
       (avl-insert ret-tree date (cdr old-tree)) ;insert data into new tree
       ret-tree)))
   
@@ -63,23 +66,30 @@
         nil
         (let* ((start-date (if (check-day start) 
                                (fmt-date start)
-                               (start))))
-           (get-by-dates (1+ start-date) end tree 
+                               start)))
+           (get-by-dates (plus_one_date start-date) end tree 
              (get-by-dates-helper start-date tree ret-tree)))))
 
+
+(defun prune-helper (reqs tree)
+      (let* ((ticker (car reqs))
+             (start (cadr reqs))
+             (end (caddr reqs))
+             (start-tree (avl-retrieve tree ticker))
+             (sub-tree (cdr start-tree))
+             (clean-tree (avl-delete tree ticker)))
+      (if (equal nil sub-tree)
+          (avl-insert clean-tree ticker (empty-tree)) 
+          (avl-insert clean-tree ticker (get-by-dates start end sub-tree (empty-tree))));subtree with dates
+  ))
        
 ; After the retrieval file is parsed
 ; Prepare the data to search the tree
 ; Once the correct ticker name is found
 (defun prune (reqs tree)
-  (if (consp reqs)
-      (let* ((ticker (car reqs))
-             (start (cadr reqs))
-             (end (caddr reqs)))
-      (if (equal nil (avl-retrieve tree ticker))
-          nil
-          (get-by-dates start end (avl-retrieve tree ticker) (empty-tree))));subtree with dates
-      nil))
+  (if (consp (cdr reqs))
+      (prune (cdr reqs) (prune-helper (car reqs) tree))
+      (prune-helper (car reqs) tree)))
 
 ;So here we will pretty much have a list
 ;where in fact every even numbered list part
