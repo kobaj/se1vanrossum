@@ -9,7 +9,6 @@
 
 (set-state-ok t)
 
-
 (delegate-into-tree
  (parse-input (file->tuples "../hist_short.txt" state))
  (empty-tree))
