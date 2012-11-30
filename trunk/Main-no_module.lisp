@@ -9,7 +9,7 @@
 
 (set-state-ok t)
 
-(prune (parse-analysis-req (read-req-file "in_file.txt"))
+(prune (read-req-file "in_file.txt")
 (delegate-into-tree
  (parse-input (file->tuples "../hist_short.txt" state))
  (empty-tree)))

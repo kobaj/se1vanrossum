@@ -47,10 +47,12 @@
 
 ; Function inserts the date and data into
 ; the new tree for output to html
-(defun get-by-dates-helper (date tree ret-tree)
-  (if (avl-retrieve date tree)
-      (avl-insert ret-tree date tree) ;insert data into new tree
-      ret-tree))
+(defun get-by-dates-helper (date-in tree ret-tree)
+  (let* ((date date-in)
+         (old-tree (avl-retrieve tree date)))
+  (if (old-tree)
+      (avl-insert ret-tree date (cdr old-tree)) ;insert data into new tree
+      ret-tree)))
   
 
 ; Searching subtree for the corret dates
@@ -78,10 +80,6 @@
           nil
           (get-by-dates start end (avl-retrieve tree ticker) (empty-tree))));subtree with dates
       nil))
-
-
-;(defun make-tree (tree)
-;   (avl-insert (empty-tree) "GOOG" (avl-insert (empty-tree) 20121115 320 ))
 
 ;So here we will pretty much have a list
 ;where in fact every even numbered list part
