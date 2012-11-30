@@ -5,6 +5,7 @@
 
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "list-utilities" :dir :teachpacks)
+(include-book "avl-string-keys")
 (set-state-ok t)
 
 
@@ -58,17 +59,12 @@
 (defun get-by-dates (start end tree ret-tree)
     (if (equal start end)
         nil
-        (if (check-day start)
-            (let* ((new-start (fmt-date start)))
-            (get-by-dates (1+ new-start) end tree 
-             (get-by-dates-helper new-start tree ret-tree)))
-        (get-by-dates (1+ start) end tree 
-                      (get-by-dates-helper start tree ret-tree)))))
+        (let* ((start-date (if (check-day start) 
+                               (fmt-date start)
+                               (start))))
+           (get-by-dates (1+ start-date) end tree 
+             (get-by-dates-helper start-date tree ret-tree)))))
 
-(defun make-tree (tree)
-   (avl-insert (empty-tree) "GOOG" (avl-insert (empty-tree) 20121115 320 ))
-  
-  
        
 ; After the retrieval file is parsed
 ; Prepare the data to search the tree
@@ -84,6 +80,8 @@
       nil))
 
 
+;(defun make-tree (tree)
+;   (avl-insert (empty-tree) "GOOG" (avl-insert (empty-tree) 20121115 320 ))
 
 ;So here we will pretty much have a list
 ;where in fact every even numbered list part
