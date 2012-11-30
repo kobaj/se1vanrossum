@@ -2,6 +2,10 @@
 (include-book "read-sort")
 (include-book "doublecheck" :dir :teachpacks)
 
+(defun make-tree (tree)
+   (avl-insert (empty-tree) "GOOG" (avl-insert (empty-tree) 20121115 320 )))
+
+
 (check-expect (check-day 20121131) t)
 (check-expect (check-day 20120101) nil)
 (check-expect (check-day 20120214) nil)
@@ -63,6 +67,3 @@
 
 (defrandom random-tree-input-list ()
   (random-list-of (random-tree-input)))
-  
-(defrandom tree-builder ()
-  (get-info (random-tree-input-list)))
