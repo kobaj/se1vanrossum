@@ -9,7 +9,8 @@
 
 (set-state-ok t)
 
+(defun do ()
 (prune (read-req-file "in_file.txt")
 (delegate-into-tree
  (parse-input (file->tuples "../hist_short.txt" state))
- (empty-tree)))
+ (empty-tree))))
