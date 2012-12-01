@@ -47,17 +47,6 @@
      (get-end (1- end) tree )
      (avl-retrieve end tree)))
 
-
-; Function inserts the date and data into
-; the new tree for output to html
-(defun get-by-dates-helper (date-in tree ret-tree)
-  (let* ((date date-in)
-         (old-tree (avl-retrieve tree date)))
-  (if (equal old-tree nil)
-      (avl-insert ret-tree date (cdr old-tree)) ;insert data into new tree
-      ret-tree)))
-  
-
 ; Searching subtree for the corret dates
 ; First check if we have matched the start 
 ; make sure date format is correct
@@ -69,7 +58,7 @@
                                start))
                (old-ret-tree (avl-retrieve tree start-date))
                (new-ret-tree (if (equal old-ret-tree nil)
-                                 ret-tree
+                                 ret-tree ; here is where you could insert 'extra' dates
                                  (avl-insert ret-tree start-date (cdr old-ret-tree)))))
            (get-by-dates (plus_one_date start-date) end tree 
              new-ret-tree))))
@@ -82,7 +71,7 @@
              (start-tree (avl-retrieve tree ticker))
              (sub-tree (cdr start-tree))
              (clean-tree (avl-delete tree ticker)))
-      (if (equal nil sub-tree)
+      (if (equal start-tree nil)
           clean-tree 
           (avl-insert clean-tree ticker (get-by-dates start end sub-tree (empty-tree))));subtree with dates
   ))
@@ -90,10 +79,23 @@
 ; After the retrieval file is parsed
 ; Prepare the data to search the tree
 ; Once the correct ticker name is found
+(defun prune-clean (reqs tree ret-tree)
+  (if (consp reqs)
+      (let* ((req (car reqs))
+             (ticker (car req))
+             (start (cadr req))
+             (end (caddr req))
+             (start-tree (avl-retrieve tree ticker))
+             (sub-tree (cdr start-tree))
+             (new-ret-tree 
+                 (if (equal start-tree nil)
+                     ret-tree
+                     (avl-insert ret-tree ticker (get-by-dates start end sub-tree (empty-tree))))))
+          (prune-clean (cdr reqs) tree new-ret-tree)) 
+      ret-tree))
+
 (defun prune (reqs tree)
-  (if (consp (cdr reqs))
-      (prune (cdr reqs) (prune-helper (car reqs) tree))
-      (prune-helper (car reqs) tree)))
+       (prune-clean reqs tree (empty-tree)))
 
 ;So here we will pretty much have a list
 ;where in fact every even numbered list part
