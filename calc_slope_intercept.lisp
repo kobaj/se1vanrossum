@@ -41,4 +41,21 @@
 ;and the keys are string dates
 (defun build-total-date-tree (flat-tree)
   (build-total-helper flat-tree (empty-tree)))
-  
+ 
+(defun get_xs (flat_dates_values number)
+  (if (consp flat_dates_values)
+      (cons number (get_xs (cdr flat_dates_values) (+ 1 number)))
+      nil))
+
+(defun get_ys (flat_dates_values)
+  (if (consp flat_dates_values)
+      (cons (cdar flat_dates_values) (get_ys (cdr flat_dates_values)))
+      nil))
+
+(defun get_list_and_slope_intercept (pruned_tree)
+  (let* ((flat_dates_values
+          (avl-flatten (build-total-date-tree (avl-flatten-both pruned_tree))))
+         (xs (get_xs flat_dates_values 1))
+         (ys (get_ys flat_dates_values))
+         (b_a (compute_slope_intercept xs ys)))
+    (list flat_dates_values b_a)))
