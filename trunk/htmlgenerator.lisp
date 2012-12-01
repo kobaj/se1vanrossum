@@ -16,7 +16,7 @@
 (defun regressionList (xs slope intercept)
   (if (endp xs)
        nil
-       (cons (+ (* slope (cadar xs)) intercept) (regressionList (cdr xs) slope intercept))
+       (cons (+ (* slope (cdar xs)) intercept) (regressionList (cdr xs) slope intercept))
        ))
     
  ;data->str (dates totalPrices reg) 
@@ -57,42 +57,55 @@
 (defun data->str (datesPrices regressionVals)
   (if (endp regressionVals)
       nil
+      (let* ((date-dgts (caar datesPrices))
+             (mnth   (subseq date-dgts 4 6))
+             (day    (subseq date-dgts 6 8))
+             (year   (subseq date-dgts 0 4))
+             (full_s (concatenate 'string "[new Date(" year "," mnth "," day ")," (rat->str (cdar datesPrices) 4) ", null, null, " (rat->str (car regressionVals) 4) ", null, null]")))
       (if (equal (cdr regressionVals) nil);if this is the last element, format without a comma.
-          (concatenate 'string "['" (rat->str (caar datesPrices) 0) "'," (rat->str (cadar datesPrices) 4) "," (rat->str (car regressionVals) 4) "]")
-          (concatenate 'string "['" (rat->str (caar datesPrices) 0) "'," (rat->str (cadar datesPrices) 4) "," (rat->str (car regressionVals) 4) "],"
+          full_s
+          (concatenate 'string full_s ","
                          (data->str (cdr datesPrices)(cdr regressionVals)))                              
-   )))
+   ))))
 
 ;stringBuilder (valuesStr)
 ;This function builds an HTML string from a data string 
 ;that will generate a Google visualization line graph.
 ;valuesStr = input string with values to graph
 (defun stringBuilder (valuesStr)
-       (list "<html><head> <script type=" " \"text/javascript\" " "src=" "\"https://www.google.com/jsapi\"" 
-                                                                   "></script>"  "<script type=" "\"text/javascript\"" ">"
-                                                                  "google.load(" "\"visualization\"" "," "\"1\"" "," "{packages:[" "\"corechart\"" "]});"
-                                                                  "google.setOnLoadCallback(drawChart);"
-                                                                   "function drawChart() {"
-                                                                  "var data = google.visualization.arrayToDataTable(["
-                                                                  
-                                                                 (string-append "[ 'Year', 'Total Closing Price', 'Least-Squares Regression'],"
-                                                                  
-                                                                (concatenate 'string valuesStr))
-                            
-                                                               "]);"
-                                                              "var options = {"
-                                                              "title:" "'Stock Analysis'"
-                                                             " };"
-                                                             "var chart = new google.visualization.LineChart(document.getElementById(" "'chart_div')); "
-                                                             "chart.draw(data, options);"
-                                                             "}"
-                                                             " </script>"
-                                                             " </head>"
-                                                            "<body>"
-                                                           "<div id=" "\"chart_div\"" "style=" "width: 500px; height: 500px;" "></div>"
-                                                          "</body> "
-                                                          "</html>" )
-  )
+       (list 
+        
+        "<html>
+  <head>
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {'packages':['annotatedtimeline']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Total Values');
+        data.addColumn('string', 'title1');
+        data.addColumn('string', 'text1');
+        data.addColumn('number', 'Linear Regression');
+        data.addColumn('string', 'title2');
+        data.addColumn('string', 'text2');
+        data.addRows(["
+        
+        (concatenate 'string valuesStr)
+        
+        "]);
+
+        var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
+        chart.draw(data, {displayAnnotations: true});
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id='chart_div' style='width: 700px; height: 240px;'></div>
+  </body>
+</html>"))
    
 
 ;writeFile (fileName dataStrList)
@@ -105,22 +118,20 @@
 ;
 ;Note: This is the entry point for this module. This function should be the only one called externally. 
 (defun writeHTML (fileName datesPricesReg) 
-  (let* ((regressionVals (regressionList (car datesPricesReg) (cadr datesPricesReg) (caddr datesPricesReg)))
+  (let* ((intercept (cadadr datesPricesReg))
+         (slope (caadr datesPricesReg))
+         (xs (car datesPricesReg))
+         (regressionVals (regressionList xs slope intercept))
          (dataStrConversion (data->str (car datesPricesReg) regressionVals))
         (htmlResult (stringBuilder dataStrConversion)))
         (string-list->file fileName htmlResult state)
   ))
 
-
-;example caller (slope and intercept not accurate!! For Testing only)
-(writeHTML "dynamicTest5.html" (list (list '(2012 300)'(2013 500)'(2014 600)'(2015 700)'(2016 800)'(2017 900)'(2018 1000)'(2019 1100)'(2020 1200)) 2 3))
-
 ;new input file
 ; 20120102 is a date, 300 is a total closing price of all for that day, and 2, 3 is the slope and intercept.
-(writeHTML "dynamicTest5.html" 
-           (list (list '("20120102" . 300) '("20130102" . 500) '("20200105" . 1200)) 2 3))
+;(writeHTML "dynamicTest5.html" 
+;           (list (list (cons "20120102" 300) (cons "20130102"  500) (cons "20140102" 1200)) (list 2 3)))
 
-  
 
 
  
