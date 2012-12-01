@@ -69,8 +69,14 @@
          (nearest>  (get_nearest_date_> date flat_tree))
          (date<     (car nearest<))
          (date>     (car nearest>))
-         (amount<   (date_difference date< date))
-         (amount>   (date_difference date date>)))
+         (amount<   
+          (if (equal date< nil)
+              9999999999999999
+              (date_difference date< date)))
+         (amount>   
+          (if (equal date> nil)
+              9999999999999999
+              (date_difference date date>))))
     (if (< amount< amount>) ;because fuck you
         nearest<
         nearest>)))
@@ -91,9 +97,8 @@
                (start_value (cdr old-ret-tree))
                (new-ret-tree (if (equal old-ret-tree nil)
                                  (let* ((nearest_element (get_nearest_date start-date tree))
-                                        (nearest_date    (car nearest_element))
                                         (nearest_value   (cdr nearest_element)))
-                                 (avl-insert ret-tree nearest_date nearest_value))
+                                 (avl-insert ret-tree start-date nearest_value))
                                  (avl-insert ret-tree start-date start_value))))
            (get-by-dates (plus_one_date start-date) end tree 
              new-ret-tree))))
