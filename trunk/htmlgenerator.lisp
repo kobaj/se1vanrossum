@@ -48,6 +48,9 @@
 ;          ['2019',  854,       1143],
 ;          ['2020',  751,       1423] " 
 
+; new format gives a date, value, null null, linear regression, null, null
+;[new Date(2008, 1 ,1), 30000, null, null, 40645, null, null],
+
 ;Note: both datesPrices and regressionVals will be indexed the same ,
 ; so checking if we haved reachedthe end of regressionVals should be sufficient. 
 ;rat->str requires a number of sig figs, for now im using 4...
@@ -110,8 +113,12 @@
 
 
 ;example caller (slope and intercept not accurate!! For Testing only)
-;(writeHTML "dynamicTest5.html" (list (list '(2012 300)'(2013 500)'(2014 600)'(2015 700)'(2016 800)'(2017 900)'(2018 1000)'(2019 1100)'(2020 1200)) 2 3))
+(writeHTML "dynamicTest5.html" (list (list '(2012 300)'(2013 500)'(2014 600)'(2015 700)'(2016 800)'(2017 900)'(2018 1000)'(2019 1100)'(2020 1200)) 2 3))
 
+;new input file
+; 20120102 is a date, 300 is a total closing price of all for that day, and 2, 3 is the slope and intercept.
+(writeHTML "dynamicTest5.html" 
+           (list (list '("20120102" . 300) '("20130102" . 500) '("20200105" . 1200)) 2 3))
 
   
 
