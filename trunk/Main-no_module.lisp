@@ -25,3 +25,6 @@
 (defun make-tree ()
   (avl-insert (empty-tree) "GOOG"
               (make-subtree)))
+
+(defun make-complex-tree ()
+  (avl-insert (make-tree) "AA" (make-subtree)))
