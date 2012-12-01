@@ -64,7 +64,7 @@
              (full_s (concatenate 'string "[new Date(" year "," mnth "," day ")," (rat->str (cdar datesPrices) 4) ", null, null, " (rat->str (car regressionVals) 4) ", null, null]")))
       (if (equal (cdr regressionVals) nil);if this is the last element, format without a comma.
           full_s
-          (concatenate 'string full_s ","
+          (concatenate 'string full_s ", \n"
                          (data->str (cdr datesPrices)(cdr regressionVals)))                              
    ))))
 
@@ -103,7 +103,7 @@
   </head>
 
   <body>
-    <div id='chart_div' style='width: 700px; height: 240px;'></div>
+    <div id='chart_div' style='width: 1200px; height: 1050px;'></div>
   </body>
 </html>"))
    
