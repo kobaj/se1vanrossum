@@ -52,6 +52,7 @@
       (cons (cdar flat_dates_values) (get_ys (cdr flat_dates_values)))
       nil))
 
+;this is the method to call
 (defun get_list_and_slope_intercept (pruned_tree)
   (let* ((flat_dates_values
           (avl-flatten (build-total-date-tree (avl-flatten-both pruned_tree))))
