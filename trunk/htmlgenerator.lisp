@@ -13,11 +13,14 @@
 ;xs = the list of values
 ;slope = the calculated slope (m) from the regression module (s)
 ;intercept = the calculated intercept (b) from the regression module (s)
+
+(defun regressionList-helper (number slope intercept) 
+  (if (<= number 0)
+      nil
+      (cons  (+ (* slope number) intercept) (regressionList-helper (- number 1) slope intercept))))
+
 (defun regressionList (xs slope intercept)
-  (if (endp xs)
-       nil
-       (cons (+ (* slope (cdar xs)) intercept) (regressionList (cdr xs) slope intercept))
-       ))
+  (reverse (regressionList-helper (len xs) slope intercept)))
     
  ;data->str (dates totalPrices reg) 
 ;This function takes in the data and converts it to
@@ -41,7 +44,7 @@
              (mnth   (subseq date-dgts 4 6))
              (day    (subseq date-dgts 6 8))
              (year   (subseq date-dgts 0 4))
-             (full_s (concatenate 'string "[new Date(" year "," mnth "," day ")," (rat->str (cdar datesPrices) 4) ", null, null, " (rat->str (car regressionVals) 4) ", null, null]")))
+             (full_s (concatenate 'string "[new Date(" year "," mnth "," day ")," (rat->str (car regressionVals) 4) ", null, null, " (rat->str (cdar datesPrices) 4)  ", null, null]")))
       (if (equal (cdr regressionVals) nil);if this is the last element, format without a comma.
           full_s
           (concatenate 'string full_s ", \n"
@@ -64,10 +67,10 @@
       function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Date');
-        data.addColumn('number', 'Total Values');
+        data.addColumn('number', 'Linear Regression');
         data.addColumn('string', 'title1');
         data.addColumn('string', 'text1');
-        data.addColumn('number', 'Linear Regression');
+        data.addColumn('number', 'Total Values');
         data.addColumn('string', 'title2');
         data.addColumn('string', 'text2');
         data.addRows(["
@@ -109,7 +112,7 @@
 
 ;new input file
 ; 20120102 is a date, 300 is a total closing price of all for that day, and 2, 3 is the slope and intercept.
-;(writeHTML "dynamicTest5.html" 
+;(writeHTML_test "dynamicTest5.html" 
 ;           (list (list (cons "20120102" 300) (cons "20130102"  500) (cons "20140102" 1200)) (list 2 3)))
 
 

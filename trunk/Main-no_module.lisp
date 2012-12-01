@@ -15,7 +15,7 @@
 (get_list_and_slope_intercept
 (prune (read-req-file "in_file.txt")
 (delegate-into-tree
- (parse-input (file->tuples "../hist_short.txt" state))
+ (parse-input (file->tuples "../hist.txt" state))
  (empty-tree))))))
          
 
