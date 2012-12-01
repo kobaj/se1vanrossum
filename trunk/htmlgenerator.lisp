@@ -28,26 +28,6 @@
 ;within the analysis file for a specific closing date (y-axis 1)
 ;reg = the linear regression data set (y -axis 2)
 
-;The output format will be as follows:
-
-;        " ['2004',  1000,      400],
-;          ['2005',  1170,      460],
-;          ['2006',  660,       1120],
-;          ['2007',  665,       1123],
-;          ['2008',  685,       1163],
-;          ['2009',  625,       5123],
-;          ['2010',  665,       1123],
-;          ['2011',  685,       1113],
-;          ['2012',  700,       1823],
-;          ['2013',  954,       3456],
-;          ['2014',  655,       1183],
-;          ['2015',  789,       1133],
-;          ['2016',  480,       1223],
-;          ['2017',  435,       1178],
-;          ['2018',  685,       1923],
-;          ['2019',  854,       1143],
-;          ['2020',  751,       1423] " 
-
 ; new format gives a date, value, null null, linear regression, null, null
 ;[new Date(2008, 1 ,1), 30000, null, null, 40645, null, null],
 
@@ -103,7 +83,7 @@
   </head>
 
   <body>
-    <div id='chart_div' style='width: 1200px; height: 1050px;'></div>
+    <div id='chart_div' style='width: 1200px; height: 800px;'></div>
   </body>
 </html>"))
    
