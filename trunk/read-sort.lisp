@@ -32,20 +32,51 @@
 (defun plus_one_date (date)
   (int->str (1+ (str->int date))))
 
+(defun get_nearest_date_< (date rev_flat_tree)
+  (let* ((top_element (car rev_flat_tree))
+         (top_date    (car top_element)))
+    (if (consp rev_flat_tree)
+    (if (string< top_date date)
+        top_element
+        (get_nearest_date_< date (cdr rev_flat_tree)))
+    nil)))
+
+(defun get_nearest_date_> (date flat_tree)
+  (let* ((top_element (car flat_tree))
+         (top_date    (car top_element)))
+    (if (consp flat_tree)
+    (if (string> top_date date)
+        top_element
+        (get_nearest_date_> date (cdr flat_tree)))
+    nil)))
+
+(defun date_difference_helper (date_1 date_2 count)
+  (if (>= (str->int date_1) (str->int date_2))
+      count
+       (let* ((start-date (if (check-day date_1) 
+                               (fmt-date date_1)
+                               date_1)))
+         (date_difference_helper (plus_one_date start-date) date_2 (1+ count)))))
+
+(defun date_difference (date_1 date_2)
+  (if (> (str->int date_1) (str->int date_2))
+      nil
+      (date_difference_helper date_1 date_2 0)))
+
+(defun get_nearest_date (date sub_tree)
+  (let* ((flat_tree (avl-flatten sub_tree))
+         (nearest<  (get_nearest_date_< date (reverse flat_tree)))
+         (nearest>  (get_nearest_date_> date flat_tree))
+         (date<     (car nearest<))
+         (date>     (car nearest>))
+         (amount<   (date_difference date< date))
+         (amount>   (date_difference date date>)))
+    (if (< amount< amount>) ;because fuck you
+        nearest<
+        nearest>)))
+  
+  
 ;;;;;;;;;;;;;;;;;;;;;;;;NOW TO GET THE CRAP OUTTA TREE;;;;;;;;;;;;;;;;;;;;;;;;
-
-;Gets the start
-(defun get-start (start tree)
-  (if (equal (avl-retrieve tree start) nil)
-     (get-start tree (1+ start))
-     (avl-retrieve start tree)))
-
-; Not really going to be used for this project
-; Gets the last date listed in subtree
-(defun get-end (end tree)
-  (if (equal (avl-retrieve tree end) nil)
-     (get-end (1- end) tree )
-     (avl-retrieve end tree)))
 
 ; Searching subtree for the corret dates
 ; First check if we have matched the start 
@@ -57,24 +88,15 @@
                                (fmt-date start)
                                start))
                (old-ret-tree (avl-retrieve tree start-date))
+               (start_value (cdr old-ret-tree))
                (new-ret-tree (if (equal old-ret-tree nil)
-                                 ret-tree ; here is where you could insert 'extra' dates
-                                 (avl-insert ret-tree start-date (cdr old-ret-tree)))))
+                                 (let* ((nearest_element (get_nearest_date start-date tree))
+                                        (nearest_date    (car nearest_element))
+                                        (nearest_value   (cdr nearest_element)))
+                                 (avl-insert ret-tree nearest_date nearest_value))
+                                 (avl-insert ret-tree start-date start_value))))
            (get-by-dates (plus_one_date start-date) end tree 
              new-ret-tree))))
-
-
-(defun prune-helper (reqs tree)
-      (let* ((ticker (car reqs))
-             (start (cadr reqs))
-             (end (caddr reqs))
-             (start-tree (avl-retrieve tree ticker))
-             (sub-tree (cdr start-tree))
-             (clean-tree (avl-delete tree ticker)))
-      (if (equal start-tree nil)
-          clean-tree 
-          (avl-insert clean-tree ticker (get-by-dates start end sub-tree (empty-tree))));subtree with dates
-  ))
        
 ; After the retrieval file is parsed
 ; Prepare the data to search the tree
@@ -94,6 +116,7 @@
           (prune-clean (cdr reqs) tree new-ret-tree)) 
       ret-tree))
 
+;Call this function to start the whole prune process
 (defun prune (reqs tree)
        (prune-clean reqs tree (empty-tree)))
 

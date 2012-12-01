@@ -19,7 +19,7 @@
   (let* ((start-tree (empty-tree))
          (start-tree2 (avl-insert start-tree "20120101" "2.0"))
          (start-tree3 (avl-insert start-tree2 "20120202" "3.0"))
-         (start-tree4 (avl-insert start-tree3 "20130101" "4.0")))
+         (start-tree4 (avl-insert start-tree3 "20130101" "1.0")))
     start-tree4))
 
 (defun make-tree ()
