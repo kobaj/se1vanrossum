@@ -43,5 +43,3 @@
          (second
           (avl-insert first "AAPL" (make-subtree))))
     second))
-
-;(avl-flatten (build-total-child-helper (avl-flatten (make-subtree)) (make-subtree)))
