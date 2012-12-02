@@ -6,7 +6,7 @@
 ; modules reads in an analysis file which
 ; will be used to prune the tree and get the data
 
-
+(require "Iavl-string-keys.lisp")
 
 (module Mread-sort
   (import Iavl-string-keys)
