@@ -1,7 +1,3 @@
-;; The first four lines of this file were added by Dracula.
-;; They tell DrScheme that this is a Dracula Modular ACL2 program.
-;; Leave these lines unchanged so that DrScheme can properly load this file.
-#reader(planet "reader.rkt" ("cce" "dracula.plt") "modular" "lang")
 (in-package "ACL2")
 
 ;Interface signatures for the HTMLGenerator module. 
@@ -10,7 +6,19 @@
   (sig regressionList (xs slope intercept))
   (sig data->str (datesPrices regressionVals))
   (sig stringBuilder (valuesStr))
-  (sig writeHTML(fileName datesPricesReg)))
+  (sig writeHTML(fileName datesPricesReg))
+  
+;  ;check-expects (where do these go? They wont work here...)
+;(check-expect (regressionList '(1 2 3 4)  2 3) '(5 7 9 11))
+;(check-expect (regressionList '()  2 3) nil)
+;(check-expect (regressionList '(1 2 3 4 5)  0 0) '(0 0 0 0 0))
+
+;regressionList contract
+(con regressionList-properties
+   (if (not (consp xs))
+                (equal (regressionList xs slope intercept) nil);empty list returns nil
+                (= (len xs) (len (regressionList xs slope intercept)))));otherwise length should be the same as original
+  )
   
 (module M-HTMLGenerator 
   
