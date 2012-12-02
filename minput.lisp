@@ -1,8 +1,11 @@
 (in-package "ACL2")
 
-(include-book "list-utilities" :dir :teachpacks)
-(include-book "io-utilities" :dir :teachpacks)
-(set-state-ok t)
+(require "Iinput.lisp")
+
+(module Minput
+  (include-book "list-utilities" :dir :teachpacks)
+  (include-book "io-utilities" :dir :teachpacks)
+  (set-state-ok t)
 
 ; (break-on-<sr> filename state)
 ; This function takes in a file and a state and delivers a list of
@@ -47,3 +50,5 @@
 ; state = file->string state
 (defun file->tuples (filename state)
   (generate-tuples (break-on-<sr> filename state)))
+  
+  (export Iinput))
