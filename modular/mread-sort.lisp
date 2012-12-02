@@ -164,9 +164,11 @@
   
   ; Reads in file and sends to pruner
   (defun read-req-file (filename)
-    (split-csv-style
-     (parse-analysis-req
-      (cdr(packets-set '(#\<,#\A,#\R,#\>) 
-                       (str->chrs (car (file->string filename state)))
-                       )))))
+    (if (stringp filename)
+        (split-csv-style
+         (parse-analysis-req
+          (cdr(packets-set '(#\<,#\A,#\R,#\>) 
+            (str->chrs (car (file->string filename state)))
+                       ))))
+    nil))
   )
