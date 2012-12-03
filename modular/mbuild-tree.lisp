@@ -37,9 +37,8 @@
                 (avl-insert tree tk (avl-insert (cdr old-tree) td cp)))))
       new-tree))
   
-  ; this fuction takes a list of lists where 
-  ; each list of strings where each
-  ;list contains the ticker, the closing price and the trade date.
+  ; this fuction takes a list of lists where each list of strings
+  ; contains the ticker, the closing price and the trade date.
   ;Then it builds an AVL
   ;tree using the tk as the key, and the closing price
   ; and trade date as the data
