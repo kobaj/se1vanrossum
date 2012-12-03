@@ -89,6 +89,7 @@
 
 
 (module Mavl-string-keys-private
+  
   ; Extractors (and empty-tree detector)
   (defun empty-tree? (tr) (not (consp tr)))
   (defun height (tr) (if (empty-tree? tr) 0 (car tr)))
