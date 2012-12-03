@@ -2,12 +2,24 @@
 ;; They tell DrScheme that this is a Dracula Modular ACL2 program.
 ;; Leave these lines unchanged so that DrScheme can properly load this file.
 #reader(planet "reader.rkt" ("cce" "dracula.plt") "modular" "lang")
+;75 Chars *****************************************************************
+
+;Team Van Rossum
+;Software Engineering 1 
+;defines how to build a tree after reading in the file
+
 ; Defines the Module build tree
 
+(require "mavl-string-keys.lisp")
 
+(interface Ibuild-tree
 
-(require "Iavl-string-keys.lisp")
-(module Mbuild-tree
+  (sig insert-into-tree (xs tree))
+  (sig delegate-into-tree (xs))
+  (sig parse-input (xs))
+  )
+
+(module Mbuild-tree-private
   (import Iavl-string-keys)
   (include-book "list-utilities" :dir :teachpacks)
   (include-book "io-utilities" :dir :teachpacks)
@@ -25,19 +37,40 @@
                 (avl-insert tree tk (avl-insert (cdr old-tree) td cp)))))
       new-tree))
   
-  ; this fuction takes a list of lists where each list of strings where each
-  ;list contains the ticker, the closing price and the trade date. Then it builds an AVL
-  ;tree using the tk as the key, and the closing price and trade date as the data
-  (defun delegate-into-tree (xs tree)
-    (if (consp (cdr xs))
-        (delegate-into-tree (cdr xs) (insert-into-tree (car xs) tree))
+  ; this fuction takes a list of lists where 
+  ; each list of strings where each
+  ;list contains the ticker, the closing price and the trade date.
+  ;Then it builds an AVL
+  ;tree using the tk as the key, and the closing price
+  ; and trade date as the data
+  (defun delegate-into-tree-helper (xs tree)
+  (if (consp (cdr xs))
+        (delegate-into-tree-helper (cdr xs) (insert-into-tree (car xs) tree))
         (insert-into-tree (car xs) tree)))
+    
+  (defun delegate-into-tree (xs)
+    (delegate-into-tree-helper xs (empty-tree)))
   
   (defun parse-input (xs)
     (if (consp xs)
-        (let* ((cp (chrs->str (car(tokens '(#\< #\c #\p #\>)(str->chrs (cadr(car xs)))))))
-               (td (chrs->str (car(tokens '(#\< #\t #\d #\>)(str->chrs (caddr(car xs)))))))
-               (key (chrs->str (car(tokens '(#\< #\t #\k #\>)(str->chrs (caar xs)))))))
+        (let* ((cp (chrs->str (car(tokens '(#\< #\c #\p #\>)
+                                       (str->chrs (cadr(car xs)))))))
+               (td (chrs->str (car(tokens '(#\< #\t #\d #\>)
+                                      (str->chrs (caddr(car xs)))))))
+               (key (chrs->str (car(tokens '(#\< #\t #\k #\>)
+                                      (str->chrs (caar xs)))))))
           (cons (list key td cp) (parse-input (cdr xs))))
         nil))
+  
+  (export Ibuild-tree)
   )
+
+(link Mmiddle-build-tree
+      (import Iavl-string-keys)
+      (export Ibuild-tree)
+      (Mbuild-tree-private))
+
+(link Mbuild-tree
+      (import)
+      (export Ibuild-tree)
+      (Mavl-string-keys Mmiddle-build-tree))

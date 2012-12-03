@@ -2,13 +2,36 @@
 ;; They tell DrScheme that this is a Dracula Modular ACL2 program.
 ;; Leave these lines unchanged so that DrScheme can properly load this file.
 #reader(planet "reader.rkt" ("cce" "dracula.plt") "modular" "lang")
-; @Author Team Van Rossum
-; modules reads in an analysis file which
-; will be used to prune the tree and get the data
+;75 Chars *****************************************************************
 
-(require "Iavl-string-keys.lisp")
+;Team Van Rossum
+;Software Engineering 1 
+;defines interface for mread-sort module
 
-(module Mread-sort
+(require "mavl-string-keys.lisp")
+
+(interface Iread-sort
+
+  (sig check-day (date))
+  (sig fmt-date-helper (year mnth day))
+  (sig fmt-date (date))
+  (sig plus_one_date (date))
+  (sig get_nearest_date_< (date rev_flat_tree))
+  (sig get_nearest_date_> (date flat_tree))
+  (sig date_difference_helper (date_1 date_2 count))
+  (sig date_difference (date_1 date_2))
+  (sig get_nearest_date (date sub_tree))
+  (sig  get-by-dates (start end tree ret-tree))
+  (sig prune-clean (reqs tree ret-tree))
+  (sig  prune (reqs tree))
+  (sig parse-analysis-req (reqs))
+  (sig to-search-structure (xs))
+  (sig  split-csv-style (data))
+  (sig read-req-file (filename))
+  
+  )
+
+(module Mread-sort-private
   (import Iavl-string-keys)
   (include-book "io-utilities" :dir :teachpacks)
   (include-book "list-utilities" :dir :teachpacks)
@@ -40,11 +63,11 @@
   
   
   
- ;;;;;;;;;;;;; Add these nodes to the tree if not in;;;;;;;;;; 
+  ;;;;;;;;;;;;; Add these nodes to the tree if not in;;;;;;;;;; 
   ;Increase the date by one
   (defun plus_one_date (date)
     (int->str (1+ (str->int date))))
-
+  
   (defun get_nearest_date_< (date rev_flat_tree)
     (let* ((top_element (car rev_flat_tree))
            (top_date    (car top_element)))
@@ -53,7 +76,7 @@
               top_element
               (get_nearest_date_< date (cdr rev_flat_tree)))
           nil)))
-
+  
   (defun get_nearest_date_> (date flat_tree)
     (let* ((top_element (car flat_tree))
            (top_date    (car top_element)))
@@ -168,7 +191,19 @@
         (split-csv-style
          (parse-analysis-req
           (cdr(packets-set '(#\<,#\A,#\R,#\>) 
-            (str->chrs (car (file->string filename state)))
-                       ))))
-    nil))
+                           (str->chrs (car (file->string filename state)))
+                           ))))
+        nil))
+  
+  (export Iread-sort)
   )
+
+(link Mmiddle-read-sort
+      (import Iavl-string-keys)
+      (export Iread-sort)
+      (Mread-sort-private))
+
+(link Mread-sort
+      (import)
+      (export Iread-sort)
+      (Mavl-string-keys Mmiddle-read-sort))

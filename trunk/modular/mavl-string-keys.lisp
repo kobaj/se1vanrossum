@@ -2,6 +2,22 @@
 ;; They tell DrScheme that this is a Dracula Modular ACL2 program.
 ;; Leave these lines unchanged so that DrScheme can properly load this file.
 #reader(planet "reader.rkt" ("cce" "dracula.plt") "modular" "lang")
+;75 Chars *****************************************************************
+
+;Team Van Rossum
+;Software Engineering 1 
+;defines interface for mavl-string-key module
+;build off of pages model
+
+(interface Iavl-string-keys
+  ; function def's
+    (sig avl-retrieve (tr k))
+    (sig empty-tree ( ))
+    (sig avl-insert (tr new-key new-datum))
+    (sig avl-delete (tr key))
+    (sig avl-flatten (tr))
+    (sig avl-flatten-both (tr)))
+
 #|=======  Module: AVL trees   =======================================
  Defining
    (avl-retrieve tr key)
@@ -69,11 +85,10 @@
      (cadr e) is the datum at the root of the subtree of tr where k 
      occurs
 ==========   Environment setup    ==================================|#
-(in-package "ACL2")
 ;=====================================================================
 
 
-(module Mavl-string-keys
+(module Mavl-string-keys-private
   ; Extractors (and empty-tree detector)
   (defun empty-tree? (tr) (not (consp tr)))
   (defun height (tr) (if (empty-tree? tr) 0 (car tr)))
@@ -359,4 +374,18 @@
     (or (not (consp (cdr pairs)))
         (and (key< (caar pairs) (caadr pairs))
              (increasing-pairs? (cdr pairs)))))
+  
+    (defun avl-flatten-both (tr)  ; delivers all key/data cons-pairs
+    (if (empty-tree? tr)        ; with keys in increasing order
+        nil                     ; and datum is also a flattened tree
+        (append (avl-flatten-both (left tr))
+                (list (cons (key tr) (list (avl-flatten (data tr)))))
+                (avl-flatten-both (right tr)))))
+  
+  (export Iavl-string-keys)
   )
+
+(link Mavl-string-keys
+      (import)
+      (export Iavl-string-keys)
+      (Mavl-string-keys-private))
