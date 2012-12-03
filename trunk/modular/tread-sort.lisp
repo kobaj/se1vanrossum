@@ -2,14 +2,18 @@
 ;; They tell DrScheme that this is a Dracula Modular ACL2 program.
 ;; Leave these lines unchanged so that DrScheme can properly load this file.
 #reader(planet "reader.rkt" ("cce" "dracula.plt") "modular" "lang")
+;75 Chars *****************************************************************
 
-
+;Team Van Rossum
+;Software Engineering 1 
 ;Testing for the read and sort module
+
 (require "Mread-sort.lisp")
-(module Tread-sort
+
+(module Tread-sort-private
+  (import Iavl-string-keys)
   (import Iread-sort)
   (include-book "testing" :dir :teachpacks)
-  (include-book "read-sort")
   (include-book "doublecheck" :dir :teachpacks)
   
   
@@ -33,23 +37,23 @@
                 '(("GOOG" "20121113" "20120305")))
   (check-expect (split-csv-style '(
                                    (#\G  #\O  #\O  #\G  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
                                    (#\A  #\M  #\Z  #\N  #\, 
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
                                    (#\Y  #\H  #\O  #\O  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
                                    (#\A  #\P  #\P  #\L  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
                                    (#\V  #\Z  #\W  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3  #\0  #\5)
                                    (#\G  #\O  #\O  #\G  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
-                                         #\2  #\0  #\1  #\2  #\0  #\3 #\0 #\5)))
+                               #\2  #\0  #\1  #\2  #\0  #\1  #\0  #\5  #\,
+                                    #\2  #\0  #\1  #\2  #\0  #\3 #\0 #\5)))
                 '(("GOOG" "20120105" "20120305")
                   ("AMZN" "20120105" "20120305")
                   ("YHOO" "20120105" "20120305")
@@ -77,3 +81,8 @@
   (defrandom random-tree-input-list ()
     (random-list-of (random-tree-input)))
   )
+
+(link Tread-sort
+      (Mavl-string-keys Mread-sort Tread-sort-private))
+
+(invoke Tread-sort)
