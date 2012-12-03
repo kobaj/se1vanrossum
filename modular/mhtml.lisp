@@ -16,11 +16,6 @@
   (sig stringBuilder (valuesStr))
   (sig writeHTML(fileName datesPricesReg))
   
-  ;  ;check-expects (where do these go? They wont work here...)
-  ;(check-expect (regressionList '(1 2 3 4)  2 3) '(5 7 9 11))
-  ;(check-expect (regressionList '()  2 3) nil)
-  ;(check-expect (regressionList '(1 2 3 4 5)  0 0) '(0 0 0 0 0))
-  
   ;regressionList contract
   (con regressionList-properties
        (if (not (consp xs))
