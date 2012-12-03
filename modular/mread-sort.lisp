@@ -198,12 +198,7 @@
   (export Iread-sort)
   )
 
-(link Mmiddle-read-sort
+(link Mread-sort
       (import Iavl-string-keys)
       (export Iread-sort)
       (Mread-sort-private))
-
-(link Mread-sort
-      (import)
-      (export Iread-sort)
-      (Mavl-string-keys Mmiddle-read-sort))
