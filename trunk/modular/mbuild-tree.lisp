@@ -65,12 +65,7 @@
   (export Ibuild-tree)
   )
 
-(link Mmiddle-build-tree
+(link Mbuild-tree
       (import Iavl-string-keys)
       (export Ibuild-tree)
       (Mbuild-tree-private))
-
-(link Mbuild-tree
-      (import)
-      (export Ibuild-tree)
-      (Mavl-string-keys Mmiddle-build-tree))

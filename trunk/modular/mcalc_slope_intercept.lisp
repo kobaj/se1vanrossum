@@ -80,12 +80,7 @@
   (export Icalc_slope_intercept)
   )
 
-(link Mmiddle_calc_slope_intercept
+(link Mcalc_slope_intercept
       (import Iavl-string-keys Ilinear_regression_functions)
       (export Icalc_slope_intercept)
       (Mcalc_slope_intercept-private))
-
-(link Mcalc_slope_intercept
-      (import)
-      (export Icalc_slope_intercept)
-      (Mavl-string-keys Mlinear_regression_functions Mmiddle_calc_slope_intercept))

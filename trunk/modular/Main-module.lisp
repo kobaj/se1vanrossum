@@ -14,6 +14,8 @@
 ; in_req   - the file name of the input requirements file
 ; in_hist  - the file name of the ticker statistics
 
+(require "mavl-string-keys.lisp")
+(require "mlinear_regression_functions.lisp")
 (require "minput.lisp")
 (require "mbuild-tree.lisp")
 (require "mread-sort.lisp")
@@ -48,7 +50,8 @@
 
 ; build all the correct links
 (link Mmain
-  (import 
+  (import Iavl-string-keys
+          Ilinear_regression_functions
           Iinput
           Ibuild-tree
           Iread-sort
@@ -61,7 +64,8 @@
 (link Rmain
       (import)
       (export Imain)
-      (  
+      (   Mavl-string-keys
+          Mlinear_regression_functions
           Minput
           Mbuild-tree
           Mread-sort
