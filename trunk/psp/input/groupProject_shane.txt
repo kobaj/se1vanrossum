@@ -1,0 +1,198 @@
+name: Shane Moore
+date: Nov 11,2012
+program: tProject Stocks
+instructor: Dr. Page
+actual added lines: 294
+
+time log:
+
+	- date: Oct 30, 2012
+	  start time: 3:00PM
+	  end time: 4:13PM
+	  phase: design
+	  comment: Worked with team to come up with initial design for project. Discussed data structures, I/O, and parsing methods. 
+		  
+	- date: Nov 1, 2012
+	  start time: 3:09PM
+	  end time: 4:14PM
+	  phase: design
+	  comment: Worked with the team to design the flow and layout of the paper and project
+		  
+	- date: Nov, 5 2012
+	  start time: 4:30PM
+	  end time:  7:30PM
+	  phase: documentation
+	  comment: Worked on the format for the design document waiting to discuss with team what else needs to be put in before we hand in
+
+	- date: Nov 6, 2012
+	  start time: 3:08PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: Team design documentation, and decided who would be working on which modules.
+		  
+	- date: Nov 20, 2012
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: planning
+	  comment: Discussed who would work on which parts of the project, and what code each person would need to write.
+
+	- date: Nov 22,2012
+	  start time: 5:26PM
+	  end time: 7:13PM
+	  phase: Code/Design
+	  comment: Spending time on my flight to Phoenix writing the initial stubs for code wrote prune, parse and read in parts and writing out design
+
+	- date: Nov 23,2012
+	  start time: 8:41PM
+	  end time: 10:46PM
+	  phase: Code
+	  comment: Wrote the part for the prune works good for input I am giving it need to put to gether with rest of projects
+	  
+	- date: Nov 24,2012
+	  start time: 8:54AM
+	  end time: 9:32AM
+	  phase: Code
+	  comment: Wrote the read in and set it up to be passed to the parsing function then to prune 
+	  
+	- date: Nov 24,2012
+	  start time: 10:36AM
+	  end time: 11:46AM
+	  phase: Code
+	  comment: Stuck on the parsing it is not working the way I am expecting so I am going to take a break eat a sandwhich and come back to it
+
+	- date: Nov 24,2012
+	  start time: 1:14PM
+	  end time: 3:06PM
+	  phase: Code
+	  comment: Got all the parsing done and it is working being passed to the prune function committing
+	  
+	- date: Nov 27,2012
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: Code
+	  comment: Team meeting hashing out the minor details of who does what and did some coding as well
+	  
+	- date: Nov 27,2012
+	  start time: 4:53PM
+	  end time: 6:02PM
+	  phase: Code
+	  comment: Working on the pruning of the tree went well got the functions needed to work with parsing module
+	  
+	- date: Nov 27,2012
+	  start time: 08:33PM
+	  end time: 11:32PM
+	  phase: Code
+	  comment: Did all of the date formatting functions needed for the project so we can traverse the tree right
+	  
+	- date: Nov 28,2012
+	  start time: 2:24PM
+	  end time: 5:23PM
+	  phase: Code
+	  comment: Added check-expects to my part of the project all tests went through correctly.
+	  
+	- date: Nov 28,2012
+	  start time: 11:15PM
+	  end time: 2:45PM
+	  phase: Code
+	  comment: Modularized all of my functions and tests so the project will mesh together with the rest of the modules
+	  
+        - date: Nov 29,2012
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: Meeting
+	  comment: Team meeting today worked out minor bugs everyone was having so we can put all the modules together
+
+	 - date: Dec 2,2012
+	  start time: 1:30PM
+	  end time: 2:45PM
+	  phase: Documentation
+	  comment: Wrote the majority of the documentation for Timpl just need to add the psp out-put and can print
+	  
+	  
+
+defect log:
+	- date: Nov 23, 2012
+	  type: Conceptual
+	  fix time: 26
+	  comment: Prune is not working with the test data I supply it my key is not working properly fixed appropriately
+
+	- date: Nov 23, 2012
+	  type: Conceptual/Technical
+	  fix time: 22
+	  comment: PAckets is not working the way  I expected it to so I fixed it to work with characters rather than string
+
+	- date: Nov 24, 2012
+	  type: Conceptual/Technical
+	  fix time: 26
+	  comment: Parsing of the <AR> is not working the way I expected it to still have a AR>DATA..... in there my fix was to just trim off the front part
+
+	- date: Nov 24, 2012
+	  type: Conceptual/Technical
+	  fix time: 103
+	  comment: My data structure is not being put together correctly in the parse function so when it is pased to prune it has (GOOG DATE1  DATE2) rather than (GOOG (DATE1) (DATE2)) 
+	  
+	- date: Nov 24, 2012
+	  type: Conceptual/Technical
+	  fix time: 103
+	  comment: My data structure is not being put together correctly in the parse function so when it is pased to prune it has (GOOG DATE1  DATE2) rather than (GOOG (DATE1) (DATE2)) 
+	
+	  
+	- date: Nov 27, 2012
+	  type:Technical
+	  fix time: 32
+	  comment: Cannot test correctly if my pruning function is working made some sample input and tested worked correctly after minor fix i car'd when u shoulda caar'd
+	
+	- date: Nov 27, 2012
+	  type:Technical
+	  fix time: 103
+	  comment: Date is not going to next year problem was that it did not account for the 0101 for january 1st fixed 
+	
+	- date: Nov 27, 2012
+	  type: Technical
+	  fix time: 15
+	  comment: Date formatting with years and months not working properly because I was expecting an integer to be passed changed to string
+	  
+	- date: Nov 28, 2012
+	  type: Conceptual/Technical
+	  fix time: 21
+	  comment: Problem occuring with interface not meshing with my module reason was because I did not do the require at the top
+	  
+	
+	
+new objects:
+
+	- name: read-req-file
+	  estimated lines:  6
+	  type: io
+	  
+	- name: parse-analysis-req
+	  estimated lines: 10
+	  type: non-io
+
+	- name: to-search-structure
+	  estimated lines:  7
+	  type: non-io
+	  
+	- name: split-csv-style
+	  estimated lines:  5
+	  type: non-io
+
+	- name: fmt-date-helper
+	  estimated lines: 4
+	  type: non-io
+
+	- name: check-day
+	  estimated lines: 3
+	  type: non-io
+	  
+	- name: fmt-date
+	  estimated lines: 5
+	  type: non-io
+	  
+	- name: prune
+	  estimated lines: 10
+	  type: non-io
+	  
+	- name: get-by-dates
+	  estimated lines: 15
+	  type: non-io

@@ -1,0 +1,87 @@
+name: Olufemi Fashanu
+date: December 3, 2012
+program: groupProject
+instructor: Dr. Page
+language: Modular ACL2
+
+actual added lines: 23
+actual base lines: 29
+
+time log:
+
+	- date: Oct 30, 2012
+	  start time: 3:05PM
+	  end time: 4:11PM
+	  phase: coding
+	  comment: made initial design plans for the team design review. Layed out plans for each part of the project.
+
+	- date: Nov 1, 2012
+	  start time: 3:07PM
+	  end time: 4:04PM
+	  phase: coding
+	  comment: expanded on each part of the design and detailed the plans for each part.
+
+	- date: Nov 6, 2012
+	  start time: 3:03PM
+	  end time: 4:12PM
+	  phase: coding
+	  comment: Finalized the final team design document.
+
+	- date: Nov 20, 2012
+	  start time: 3:04PM
+	  end time: 4:10PM
+	  phase: coding
+	  comment: Finalized plans to complete the project, and deligated taks to each member based on the team design.
+
+	- date: Nov 25, 2012
+	  start time: 10:22PM
+	  end time: 11:21PM
+	  phase: coding
+	  comment: Worked on splitting the information from the stock record into three tags (tickers, closing price and trade date)
+
+	- date: Nov 27, 2012
+	  start time: 3:06PM
+	  end time: 4:12PM
+	  phase: coding
+	  comment: worked on code to build the AVL tree.
+
+	- date: Nov 29, 2012
+	  start time: 3:12PM
+	  end time: 4:17PM
+	  phase: coding
+	  comment: defined a couple of helper functions to build the tree accoding to the document specifications; i.e creating sub-trees to as the data for nodes in the trees keyed off the same key.
+
+
+new objects:
+
+	- name: insert-into-tree
+	  estimated lines: 7
+	  type: AVL tree helper
+
+	- name: delegate-into-tree
+	  estimated lines: 7
+	  type: AVL tree helper
+
+	- name: parse-input
+	  estimated lines: 15
+	  type: AVL tree
+
+
+defect log:
+
+ 	- date: Nov 25, 2012
+	  type: coding
+	  fix time: 5
+	  comment: got errors using the chrs->str function because I attempted to pass in a list of characters instead of a list of lists of charachters
+
+	- date: Nov 26, 2012
+	  type: Build Tree
+	  fix time: 15
+	  comment: program crashes on attempt to build the AVL tree. Need to reformat the features of the tree
+
+- date: Nov 28, 2012
+	  type: AVL Tree
+	  fix time: 20
+	  comment: when building the AVL tree, stock records with the same name are added only once to the tree, and everything else ignored. Fixed by putting stock records with the same names as subtrees in one stock record of the same name
+
+

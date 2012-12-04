@@ -1,0 +1,131 @@
+name: Cezar Delucca
+date: Oct 30, 2012
+program: ACL2 Stock Analysis
+instructor: Dr. Page
+language: ACL2
+
+actual added lines: 64
+actual base lines: 55
+actual modified lines: 24
+actual removed lines: 13
+
+time log:
+
+	- date: Oct 30, 2012
+	  start time: 3:00PM
+	  end time: 4:13PM
+          phase: plan
+	  comment: Began brainstorming and learning project requirements. 
+
+	- date: Nov 1, 2012
+	  start time: 3:00PM
+	  end time: 4:18PM
+          phase: plan
+	  comment: Continued with initial design and completed overview of requirements.
+ 
+	- date: Nov 6, 2012
+	  start time: 3:01PM
+	  end time: 4:12PM
+          phase: plan
+	  comment: Continued to plan out all of the modules and review design.
+
+	- date: Nov 20, 2012
+	  start time: 3:04PM
+	  end time: 4:20PM
+          phase: plan
+	  comment: Finished reviewing design and began to delegate modules for each member of the group.
+
+	- date: Nov 26, 2012
+	  start time: 4:33PM
+	  end time: 9:43PM
+          phase: individual portion
+	  comment: Worked on planning and implementing my portion of the project, the html generation.
+
+	- date: Nov 27, 2012
+	  start time: 1:12PM
+	  end time: 4:16PM
+          phase: PSP
+	  comment: Merged PSP documents to satisfy project requirements and continued individual implementations. 
+
+	- date: Nov 29, 2012
+	  start time: 9:44AM
+	  end time: 11:21PM
+          phase: Individual work
+	  comment: Completed the HTML generator and documented the source.
+
+	- date: Nov 29, 2012
+	  start time: 3:05PM
+	  end time: 4:18PM
+          phase: PSP
+	  comment: Group meeting to work on our individual portions and provided aid to those who needed it. 
+
+	- date: Nov 30, 2012
+	  start time: 3:35PM
+	  end time: 5:22PM
+          phase: modularized
+	  comment: Converted the HTML generator into modular ACL2 and tested its functionality.
+
+	- date: Dec 2, 2012
+	  start time: 4:15PM
+	  end time: 6:18PM
+          phase: testing
+	  comment: Wrote check-expects and a contract to verify regressionList's correctness. 
+
+defect log:
+
+	- date: Nov 27, 2012
+	  type: bug
+	  fix time: 15
+	  comment: String injection was not injecting anything. Was off by one.
+
+	- date: Nov 27, 2012
+	  type: bug
+	  fix time: 5
+	  comment: RegressionList was returning incorrect values. 
+
+	- date: Dec 2, 2012
+	  type: bug
+	  fix time: 10
+	  comment: contract had multiple syntax errors that were not clearly visible. 
+
+	- date: Dec 2, 2012
+	  type: bug
+	  fix time: 13
+	  comment: After converting to modular form, there were some issues with linking the software properly. 
+	  
+	  
+new objects:
+
+	- name: data->str
+	  estimated lines: 12
+	  type: non-io
+
+	- name: stringBuilder
+	  estimated lines: 20
+	  type: non-io
+
+	- name: writeHTML
+	  estimated lines: 5
+	  type: IO
+
+	- name: regressionList
+	  estimated lines: 5
+	  type: non-io
+
+	- name: check-expect1
+	  estimated lines: 3
+	  type: testing
+
+	- name: check-expect2
+	  estimated lines: 3
+	  type: testing
+
+	- name: check-expect3
+	  estimated lines: 3
+	  type: testing
+
+	- name: regressionList-properties
+	  estimated lines: 5
+	  type: contract
+	
+	

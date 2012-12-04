@@ -1,0 +1,249 @@
+name: Van Rossum
+date: December 2, 2012
+program: tProject
+instructor: Dr. Page
+
+actual base lines: 755
+actual added lines: 1033
+actual modified lines: 0
+actual removed lines: 0
+
+time log:
+
+	- date: November 1, 2012
+	  start time: 3:02PM
+	  end time: 4:16PM
+	  phase: Group
+	  comment: Working on initial design of project.
+
+	- date: November 6, 2012
+	  start time: 3:10PM
+	  end time: 4:01PM
+	  phase: Group
+	  comment: Revising the design of the project.
+
+	- date: November 20, 2012
+	  start time: 3:07PM
+	  end time: 3:46PM
+	  phase: Group
+	  comment: Delegating work and final design decisions.
+	  
+	- date: November 27, 2012
+	  start time: 3:01PM
+	  end time: 4:15PM
+	  phase: Group
+	  comment: Group work day.
+	  
+	- date: November 29, 2012
+	  start time: 3:11PM
+	  end time: 4:18PM
+	  phase: Group
+	  comment: Group work day.
+
+new objects:
+
+	- name: Wrapper_main_function and Module by Jakob
+	  estimated lines: 175
+	  type: Module
+	
+	- name: Read_and_parse and Module by Femi
+	  estimated lines: 175
+	  type: Module
+
+	- name: Read_and_proune and Module by Shane
+	  estimated lines: 175
+	  type: Module
+
+	- name: Linear_regression and Module by Clay
+	  estimated lines: 175
+	  type: Module
+
+	- name: HTML_output by and Module Cezar
+	  estimated lines: 175
+	  type: Module
+
+reused objects:
+
+	- name: Wrapper_main_function by Jakob
+	  estimated base: 151
+	  type: Function_Set
+	
+	- name: Read_and_parse by Femi
+	  estimated base: 151
+	  type: Function_Set
+
+	- name: Read_and_proune by Shane
+	  estimated base: 151
+	  type: Function_Set
+
+	- name: Linear_regression by Clay
+	  estimated base: 151
+	  type: Function_Set
+
+	- name: HTML_output by Cezar
+	  estimated base: 151
+	  type: Function_Set
+
+
+defect log:
+
+	- date: Nov 23, 2012
+	  type: Conceptual
+	  fix time: 26
+	  comment: Prune is not working with the test data I supply it my key is not working properly fixed appropriately
+
+	- date: Nov 23, 2012
+	  type: Conceptual/Technical
+	  fix time: 22
+	  comment: PAckets is not working the way  I expected it to so I fixed it to work with characters rather than string
+
+	- date: Nov 24, 2012
+	  type: Conceptual/Technical
+	  fix time: 26
+	  comment: Parsing of the <AR> is not working the way I expected it to still have a AR>DATA..... in there my fix was to just trim off the front part
+
+	- date: Nov 24, 2012
+	  type: Conceptual/Technical
+	  fix time: 103
+	  comment: My data structure is not being put together correctly in the parse function so when it is pased to prune it has (GOOG DATE1  DATE2) rather than (GOOG (DATE1) (DATE2)) 
+	  
+	- date: Nov 27, 2012
+	  type:Technical
+	  fix time: 32
+	  comment: Cannot test correctly if my pruning function is working made some sample input and tested worked correctly after minor fix i car'd when u shoulda caar'd
+	
+	- date: Nov 27, 2012
+	  type:Technical
+	  fix time: 103
+	  comment: Date is not going to next year problem was that it did not account for the 0101 for january 1st fixed 
+	
+	- date: Nov 27, 2012
+	  type: Technical
+	  fix time: 15
+	  comment: Date formatting with years and months not working properly because I was expecting an integer to be passed changed to string
+	  
+	- date: Nov 28, 2012
+	  type: Conceptual/Technical
+	  fix time: 21
+	  comment: Problem occuring with interface not meshing with my module reason was because I did not do the require at the top
+	  
+	- date: Nov 27, 2012
+	  type: bug
+	  fix time: 15
+	  comment: String injection was not injecting anything. Was off by one.
+
+	- date: Nov 27, 2012
+	  type: bug
+	  fix time: 5
+	  comment: RegressionList was returning incorrect values. 
+
+	- date: Dec 2, 2012
+	  type: bug
+	  fix time: 10
+	  comment: contract had multiple syntax errors that were not clearly visible. 
+
+	- date: Dec 2, 2012
+	  type: bug
+	  fix time: 13
+	  comment: After converting to modular form, there were some issues with linking the software properly. 
+	  
+	- date: Nov 26, 2012
+	  type: logical
+	  fix time: 1
+	  comment: Accidentally fetched shares traded instead of closing price for the second field in extract-fields. Simply changed a 6 to a 5 to correct it.
+		  
+	- date: Nov 25, 2012
+	  type: coding
+	  fix time: 5
+	  comment: got errors using the chrs->str function because I attempted to pass in a list of characters instead of a list of lists of charachters
+
+	- date: Nov 26, 2012
+	  type: Build Tree
+	  fix time: 15
+	  comment: program crashes on attempt to build the AVL tree. Need to reformat the features of the tree
+
+	- date: Nov 28, 2012
+	  type: AVL Tree
+	  fix time: 20
+	  comment: when building the AVL tree, stock records with the same name are added only once to the tree, and everything else ignored. Fixed by putting stock records with the same names as subtrees in one stock record of the same name
+
+	- date: November 1, 2012
+	  type: People
+	  fix time: 1
+	  comment: Unable to write wrapper without stubs.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Delegation prune should be recursive.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Use the CDR of avl-retrieve to get the datum. not the cadr.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 7
+	  comment: Use str->int not dgts->int.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Cannot add 1 to a string without str->int first.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 8
+	  comment: When making a tree, use strings or ints always as key, don't mix the two.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Double check equal comparisons with trees.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 4
+	  comment: Cannot make straight int comparisons with dates. they must be compared with a date comparitor.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 25
+	  comment: Be sure to flatten datum at the same time as the tree when avl-flattening.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: The difference between empty-tree and return-tree is one is empty (duh).
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 6
+	  comment: Old values are not to be trusted. Ever.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Dont muddle HTML output with data. Make it clean with strings.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 10
+	  comment: Linear regression should be based on the count, not actual values of xs.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 13
+	  comment: Be sure to give everything a link.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 62
+	  comment: Don't double link anything except for the final runnable module.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Also dont use in-acl2 with modular code.
+		  

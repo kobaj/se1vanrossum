@@ -1,0 +1,156 @@
+name: Clayton Miller
+date: October 30, 2012
+Program: tProject
+instructor: Dr. Page
+
+actual added lines: 17
+actual base lines: 0
+
+time log:
+
+		- date: Oct 30, 2012
+		  start time: 3:00PM
+		  end time: 4:13PM
+		  phase: design
+		  comment: Worked with team to come up with initial design for project. Discussed data structures, I/O, and parsing methods.
+		  
+		- date: Nov 1, 2012
+		  start time: 3:09PM
+		  end time: 4:14PM
+		  phase: design
+		  comment: Worked with team to decide the flow of the program (when items would be inserted into the tree), as well as how the data would be ordered. Ran a few experiments to see how we could format input.
+		  
+		- date: Nov 6, 2012
+		  start time: 3:08PM
+		  end time: 4:13PM
+		  phase: design
+		  comment: Worked on team design documentation, and decided who would be working on which modules.
+		  
+		- date: Nov 20, 2012
+		  start time: 3:00PM
+		  end time: 4:12PM
+		  phase: planning
+		  comment: Discussed who would work on which parts of the project, and what code each person would need to write.
+		  
+		- date: Nov 26, 2012
+		  start time: 11:15AM
+		  end time: 11:51AM
+		  phase: planning
+		  comment: Worked on splitting input on <sr>.
+		  
+		- date: Nov 26, 2012
+		  start time: 11:53AM
+		  end time: 12:13PM
+		  phase: code
+		  comment: Implemented break-on-<sr> function.
+		  
+		- date: Nov 26, 2012
+		  start time: 12:13PM
+		  end time: 12:54PM
+		  phase: planning
+		  comment: Worked on extract-fields function.
+		  
+		- date: Nov 26, 2012
+		  start time: 1:54PM
+		  end time: 2:21PM
+		  phase: planning
+		  comment: Continued working on extract-fields function.
+		  
+		- date: Nov 26, 2012
+		  start time: 3:50PM
+		  end time: 3:58PM
+		  phase: code
+		  comment: Implemented extract-fields function.
+		  
+		- date: Nov 26, 2012
+		  start time: 3:58PM
+		  end time: 4:03PM
+		  phase: planning
+		  comment: Worked on generate-tuples function.
+		  
+		- date: Nov 26, 2012
+		  start time: 4:03PM
+		  end time: 4:08PM
+		  phase: code
+		  comment: Implemented generate-tuples function.
+		  
+		- date: Nov 26, 2012
+		  start time: 4:08PM
+		  end time: 4:10PM
+		  phase: planning
+		  comment: Worked on file->tuples function.
+		  
+		- date: Nov 26, 2012
+		  start time: 4:11PM
+		  end time: 4:15PM
+		  phase: code
+		  comment: Implemented file->tuples function.
+		  
+		- date: Nov 27, 2012
+		  start time: 3:07PM
+		  end time: 3:27PM
+		  phase: design
+		  comment: Reviewed some of the conceptual data structures and reworked certain function outputs.
+		  
+		- date: Nov 27, 2012
+		  start time: 3:27PM
+		  end time: 4:16PM
+		  phase: planning
+		  comment: Worked on basic design for the graph line calculation functions.
+		  
+		- date: Nov 29, 2012
+		  start time: 3:06PM
+		  end time: 4:13PM
+		  phase: planning
+		  comment: Attempted to perform operations on the full hist.txt file in a reasonable time. Results are inconclusive.
+		  
+		- date: Dec 1, 2012
+		  start time: 5:33PM
+		  end time: 6:23PM
+		  phase: code
+		  comment: Worked on modularizing the minput and calc_slope_intercept modules.
+		  
+		- date: Dec 1, 2012
+		  start time: 6:29PM
+		  end time: 7:26PM
+		  phase: planning
+		  comment: Worked on creating check-expects for Mcalc_slope_intercept module.
+		  
+		- date: Dec 1, 2012
+		  start time: 7:26PM
+		  end time: 7:42PM
+		  phase: code
+		  comment: Began implementing check-expects for Mcalc_slope_intercept module.
+		  
+		- date: Dec 1, 2012
+		  start time: 9:26PM
+		  end time: 10:07PM
+		  phase: code
+		  comment: Implemented the remaining check-expects for Mcalc_slope_intercept module.
+		
+new objects:
+		  
+		#### minput module ####
+
+		- name: break-on-<sr>
+		  estimated lines: 10
+		  type: io
+		  
+		- name: extract-fields
+		  estimated lines: 10
+		  type: io
+		  
+		- name: generate-tuples
+		  estimated lines: 10
+		  type: io
+		  
+		- name: file->tuples
+		  estimated lines: 5
+		  type: io
+		  
+defect log:
+
+		- date: Nov 26, 2012
+		  type: logical
+		  fix time: 1
+		  comment: Accidentally fetched shares traded instead of closing price for the second field in extract-fields. Simply changed a 6 to a 5 to correct it.

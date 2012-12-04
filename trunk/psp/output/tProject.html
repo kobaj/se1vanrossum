@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+	<head>
+		<title>PSP Report</title> 
+		
+		<style>
+		td.fieldname {
+			text-align:right;
+			font-weight:bold;
+		}
+		body {
+			font-family:Verdana;
+		}
+		div.section-title {
+			font-size:150%;
+			font-weight:bold;
+			margin-top:20px;
+		}
+		
+		div.graph-title {
+			font-style: italic;
+		}
+		
+		table.log-table {
+			border-collapse:collapse;
+		}
+		table.log-table td {
+			border-width:1px;
+			border-style:solid;
+			border-color:#888888;
+			padding:5px 5px 5px 5px;
+		}
+		table.log-table th {
+			border-width:2px;
+			border-style:solid;
+			border-color:#888888;
+			background-color:#CCCCCC;
+			padding:5px 5px 5px 5px;
+		}
+		</style>
+	</head> 
+	<body> 
+	
+		<div>
+			<h1>tProject</h1>
+			<em>Personal Software Process Summary</em>
+		</div>
+		
+		<div class="section-title">Project Essentials</div>
+			<table>
+				<tr><td class="fieldname">Name:</td><td>Van Rossum</td></tr>
+				<tr><td class="fieldname">Instructor:</td><td>Dr. Page</td></tr>
+				<tr><td class="fieldname">Date:</td><td>Dec 2, 2012</td></tr>
+				<tr><td class="fieldname">Language:</td><td>---</td></tr>
+			</table>
+	
+		<div class="section-title">Lines of Code</div>
+		<table>
+			<tr><th>Type</th><th>Prediction by user</th><th>Actual</th></tr>
+			<tr>
+				<td>Added</td>
+				<td>875</td>
+				<td>1033</td>
+			</tr>
+			<tr>
+				<td>Base</td>
+				<td>755</td>
+				<td>755</td>
+			</tr>
+			<tr>
+				<td>Modified</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Removed</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+		</table>
+		
+		<div class="section-title">PSP Projection</div>
+		<table>
+		<tr><td align=center>
+			<div class="graph-title">LoC Certainty</div>
+			<img src='http://chart.apis.google.com/chart?cht=lc&chd=t:4775,4578,4376,4163,3932,3672,3364,2972,2412,1381|4775,4972,5174,5387,5618,5879,6187,6578,7138,8169&chs=450x300&chco=FF0000,00FF00&chxt=x,y,x,y&chxr=1,0,150,30&chdl=Lower bound|Upper bound&chxl=0:|10%|20%|30%|40%|50%|60%|70%|80%|90%|2:|Certainty|3:|LOC&chxp=2,50|3,50&chtt=&chds=0,8169&chxr=1,0,8169'>
+		</td><td align=center>
+			<div class="graph-title">Time Certainty</div>
+			<img src='http://chart.apis.google.com/chart?cht=lc&chd=t:22845,20550,18197,15719,13027,9995,6406,1845,-4673,-16686|22845,25140,27494,29972,32663,35696,39284,43846,50364,62376&chs=450x300&chco=FF0000,00FF00&chxt=x,y,x,y&chxr=1,0,150,30&chdl=Lower bound|Upper bound&chxl=0:|10%|20%|30%|40%|50%|60%|70%|80%|90%|2:|Certainty|3:|LOC&chxp=2,50|3,50&chtt=&chds=0,62376&chxr=1,0,62376'>
+		</td></tr></table>
+		
+		<div class="section-title">Project Data</div>
+		<table>
+		<tr><td align=center valign=top>
+			<div class="graph-title">Time Per Defect Type</div>
+			<img src='http://chart.apis.google.com/chart?cht=p3&chd=t:146,1,20,15,5,1,43,150,172,26&chs=300x150&chl=Code|People|AVL Tree|Build Tree|coding|logical|bug|Technical|Conceptual/Technical|Conceptual&chtt='>
+		</td><td align=center valign=top>
+			<div class="graph-title">Time Per Phase</div>
+			<img src='http://chart.apis.google.com/chart?cht=p3&chd=t:305&chs=300x150&chl=Group&chtt='>
+		</td></tr>
+		<tr><td colspan=2 align=center valign=top>
+			<div class="graph-title">Time by Day</div>
+			<img src='http://chart.apis.google.com/chart?cht=bvs&chd=t:74,0,0,0,0,51,0,0,0,0&chco=FFCC00,CC3300,CC6600,99CC00,CCCC00&chdl=Group&chxt=x,y&chxl=0:|Nov 1|Nov 2|Nov 3|Nov 4|Nov 5|Nov 6|Nov 7|Nov 8|Nov 9|Nov 10&chtt=&chs=500x200&chbh=30,10,10&chds=0,240,0,240,0,240,0,240,0,240&chxr=1,0,240,60'><br><img src='http://chart.apis.google.com/chart?cht=bvs&chd=t:0,0,0,0,0,0,0,0,0,39&chco=FFCC00,CC3300,CC6600,99CC00,CCCC00&chdl=Group&chxt=x,y&chxl=0:|Nov 11|Nov 12|Nov 13|Nov 14|Nov 15|Nov 16|Nov 17|Nov 18|Nov 19|Nov 20&chtt=&chs=500x200&chbh=30,10,10&chds=0,240,0,240,0,240,0,240,0,240&chxr=1,0,240,60'><br><img src='http://chart.apis.google.com/chart?cht=bvs&chd=t:0,0,0,0,0,0,74,0,67&chco=FFCC00,CC3300,CC6600,99CC00,CCCC00&chdl=Group&chxt=x,y&chxl=0:|Nov 21|Nov 22|Nov 23|Nov 24|Nov 25|Nov 26|Nov 27|Nov 28|Nov 29&chtt=&chs=500x200&chbh=30,10,10&chds=0,240,0,240,0,240,0,240,0,240&chxr=1,0,240,60'>
+		</td></tr>
+		</table>
+		
+		
+		<div class="section-title">Cumulative Data</div>
+		
+		<table cellspacing=20>
+		<tr><td align=center valign=top>
+			<div class="graph-title">Time Per Defect Type</div>
+			<img src='http://chart.apis.google.com/chart?cht=p3&chd=t:292,2,40,30,10,2,86,300,447,52&chs=300x150&chl=Code|People|AVL Tree|Build Tree|coding|logical|bug|Technical|Conceptual/Technical|Conceptual&chtt='>
+		</td><td align=center valign=top>
+			<div class="graph-title">Time Per Phase</div>
+			<img src='http://chart.apis.google.com/chart?cht=p3&chd=t:123,107,817,257,310,298,1921,255,75,1921,107,431,255,428,678,448,610&chs=300x150&chl=testing|modularized|Individual work|PSP|individual portion|plan|code|Documentation|Meeting|Code|Code/Design|planning|documentation|design|Individual|coding|Group&chtt='>
+		</td></tr>
+		<tr><td colspan align=center valign=top>
+			<div class="graph-title">Actual vs Estimated LoC</div>
+			<img src='http://chart.apis.google.com/chart?cht=s&chd=t:29,75,65,35,56|23,230,294,17,88&chxt=x,y,x,y&chxr=0,0,150,30|1,0,150,30&chxl=2:|User-Estimated+LOC|3:|Actual+LOC&chxp=2,50|3,50&chs=300x200&chtt=Actual-Estimate History&chm=d,000000,1,1.0,10.0&chg=20,20'>
+		</td>
+		<td colspan align=center valign=top>
+			<div class="graph-title">Actual vs Estimated LoC</div>
+			<table>
+			<tr><th>Project</th><th>Estimate</th><th>Actual</th></tr><tr><td>groupProject</td><td>29</td><td>23</td></tr><tr><td>tProject</td><td>75</td><td>230</td></tr><tr><td>tProject Stocks</td><td>65</td><td>294</td></tr><tr><td>tProject</td><td>35</td><td>17</td></tr><tr><td>ACL2 Stock Analysis</td><td>56</td><td>88</td></tr>
+			</table>
+		</td></tr>
+		
+		</table>
+	
+		<div class="section-title">Time Log</div>
+		<table class="log-table"> 
+			<tr><th>Date</th><th>Type</th><th>Int. Time</th><th width="50%">Description</th></tr><tr><td>Nov 1, 2012, 3:02 PM - 4:16 PM</td><td>Group</td><td>0</td><td>Working on initial design of project.</td></tr><tr><td>Nov 6, 2012, 3:10 PM - 4:01 PM</td><td>Group</td><td>0</td><td>Revising the design of the project.</td></tr><tr><td>Nov 20, 2012, 3:07 PM - 3:46 PM</td><td>Group</td><td>0</td><td>Delegating work and final design decisions.</td></tr><tr><td>Nov 27, 2012, 3:01 PM - 4:15 PM</td><td>Group</td><td>0</td><td>Group work day.</td></tr><tr><td>Nov 29, 2012, 3:11 PM - 4:18 PM</td><td>Group</td><td>0</td><td>Group work day.</td></tr>
+		</table> 
+		
+		<div class="section-title">Defect Log</div>
+		<table class="log-table">
+			<tr><th>Date</th><th>Phase</th><th>Fix Time</th><th width="50%">Description</th></tr><tr><td>Nov 23, 2012</td><td>Conceptual</td><td>26</td><td>Prune is not working with the test data I supply it my key is not working properly fixed appropriately</td></tr><tr><td>Nov 23, 2012</td><td>Conceptual/Technical</td><td>22</td><td>PAckets is not working the way  I expected it to so I fixed it to work with characters rather than string</td></tr><tr><td>Nov 24, 2012</td><td>Conceptual/Technical</td><td>26</td><td>Parsing of the <AR> is not working the way I expected it to still have a AR>DATA..... in there my fix was to just trim off the front part</td></tr><tr><td>Nov 24, 2012</td><td>Conceptual/Technical</td><td>103</td><td>My data structure is not being put together correctly in the parse function so when it is pased to prune it has (GOOG DATE1  DATE2) rather than (GOOG (DATE1) (DATE2))</td></tr><tr><td>Nov 27, 2012</td><td>Technical</td><td>32</td><td>Cannot test correctly if my pruning function is working made some sample input and tested worked correctly after minor fix i car'd when u shoulda caar'd</td></tr><tr><td>Nov 27, 2012</td><td>Technical</td><td>103</td><td>Date is not going to next year problem was that it did not account for the 0101 for january 1st fixed</td></tr><tr><td>Nov 27, 2012</td><td>Technical</td><td>15</td><td>Date formatting with years and months not working properly because I was expecting an integer to be passed changed to string</td></tr><tr><td>Nov 28, 2012</td><td>Conceptual/Technical</td><td>21</td><td>Problem occuring with interface not meshing with my module reason was because I did not do the require at the top</td></tr><tr><td>Nov 27, 2012</td><td>bug</td><td>15</td><td>String injection was not injecting anything. Was off by one.</td></tr><tr><td>Nov 27, 2012</td><td>bug</td><td>5</td><td>RegressionList was returning incorrect values.</td></tr><tr><td>Dec 2, 2012</td><td>bug</td><td>10</td><td>contract had multiple syntax errors that were not clearly visible.</td></tr><tr><td>Dec 2, 2012</td><td>bug</td><td>13</td><td>After converting to modular form, there were some issues with linking the software properly.</td></tr><tr><td>Nov 26, 2012</td><td>logical</td><td>1</td><td>Accidentally fetched shares traded instead of closing price for the second field in extract-fields. Simply changed a 6 to a 5 to correct it.</td></tr><tr><td>Nov 25, 2012</td><td>coding</td><td>5</td><td>got errors using the chrs->str function because I attempted to pass in a list of characters instead of a list of lists of charachters</td></tr><tr><td>Nov 26, 2012</td><td>Build Tree</td><td>15</td><td>program crashes on attempt to build the AVL tree. Need to reformat the features of the tree</td></tr><tr><td>Nov 28, 2012</td><td>AVL Tree</td><td>20</td><td>when building the AVL tree, stock records with the same name are added only once to the tree, and everything else ignored. Fixed by putting stock records with the same names as subtrees in one stock record of the same name</td></tr><tr><td>Nov 1, 2012</td><td>People</td><td>1</td><td>Unable to write wrapper without stubs.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>2</td><td>Delegation prune should be recursive.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>1</td><td>Use the CDR of avl-retrieve to get the datum. not the cadr.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>7</td><td>Use str->int not dgts->int.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>2</td><td>Cannot add 1 to a string without str->int first.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>8</td><td>When making a tree, use strings or ints always as key, don't mix the two.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>1</td><td>Double check equal comparisons with trees.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>4</td><td>Cannot make straight int comparisons with dates. they must be compared with a date comparitor.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>25</td><td>Be sure to flatten datum at the same time as the tree when avl-flattening.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>2</td><td>The difference between empty-tree and return-tree is one is empty (duh).</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>6</td><td>Old values are not to be trusted. Ever.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>1</td><td>Dont muddle HTML output with data. Make it clean with strings.</td></tr><tr><td>Nov 30, 2012</td><td>Code</td><td>10</td><td>Linear regression should be based on the count, not actual values of xs.</td></tr><tr><td>Dec 2, 2012</td><td>Code</td><td>13</td><td>Be sure to give everything a link.</td></tr><tr><td>Dec 2, 2012</td><td>Code</td><td>62</td><td>Don't double link anything except for the final runnable module.</td></tr><tr><td>Dec 2, 2012</td><td>Code</td><td>2</td><td>Also dont use in-acl2 with modular code.</td></tr>
+		</table>
+	</body>
+</html> 
+ 
