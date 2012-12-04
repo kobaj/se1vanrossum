@@ -79,7 +79,7 @@ defect log:
 	  fix time: 15
 	  comment: program crashes on attempt to build the AVL tree. Need to reformat the features of the tree
 
-- date: Nov 28, 2012
+  - date: Nov 28, 2012
 	  type: AVL Tree
 	  fix time: 20
 	  comment: when building the AVL tree, stock records with the same name are added only once to the tree, and everything else ignored. Fixed by putting stock records with the same names as subtrees in one stock record of the same name
