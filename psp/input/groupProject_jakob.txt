@@ -1,0 +1,170 @@
+name: Jakob Griffith
+date: November 1, 2012
+program: tProject
+instructor: Dr. Page
+
+actual base lines: 513
+actual added lines: 204
+actual modified lines: 26
+actual removed lines: 0
+
+time log:
+
+	- date: November 1, 2012
+	  start time: 3:02PM
+	  end time: 4:16PM
+	  phase: Group
+	  comment: Working on initial design of project.
+
+	- date: November 6, 2012
+	  start time: 3:10PM
+	  end time: 4:01PM
+	  phase: Group
+	  comment: Revising the design of the project.
+
+	- date: November 20, 2012
+	  start time: 3:07PM
+	  end time: 3:46PM
+	  phase: Group
+	  comment: Delaging work and final design decisions.
+
+	- date: November 27, 2012
+	  start time: 3:01PM
+	  end time: 4:15PM
+	  phase: Group
+	  comment: Group work day, I layed out my main functions.
+	  
+	- date: November 29, 2012
+	  start time: 3:11PM
+	  end time: 4:18PM
+	  phase: Group
+	  comment: Group work day, I worked on changing avl rational to avl string keys.
+	  
+	- date: November 30, 2012
+	  start time: 11:01AM
+	  end time: 12:20PM
+	  phase: Individual
+	  comment: Working on combining everyones work together. Specifically Clay and Femi's code.
+	  
+	- date: November 30, 2012
+	  start time: 3:56PM
+	  end time: 10:42PM
+	  phase: Individual
+	  comment: After my break I resumed meshing work together. Specifically the above with Shane, my, and Cezar's code.
+	  
+	- date: December 2, 2012
+	  start time: 4:17PM
+	  end time: 7:30PM
+	  phase: Individual
+	  comment: Once everyones work was together, I modularized it.
+	  
+new objects:
+
+	- name: Wrapper_main_function
+	  estimated lines: 10
+	  type: Function
+
+	- name: Slope intercept calculator function
+	  estimated lines: 20
+	  type: Function
+
+    - name: Sum of ticker cp function
+      estimated lines: 20
+      type: Function
+      
+    - name: Nearest date calculator function
+      estimated lines: 25
+      type: Function
+      
+
+reused objects:
+
+	- name: Linear_regression_functions
+	  estimated base: 157
+	  type: Function
+	  
+	- name: AVL-rational-keys
+	  estimated base: 356
+	  type: Function
+
+defect log:
+
+	- date: November 1, 2012
+	  type: People
+	  fix time: 1
+	  comment: Unable to write wrapper without stubs.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Delegation prune should be recursive.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Use the CDR of avl-retrieve to get the datum. not the cadr.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 7
+	  comment: Use str->int not dgts->int.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Cannot add 1 to a string without str->int first.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 8
+	  comment: When making a tree, use strings or ints always as key, don't mix the two.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Double check equal comparisons with trees.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 4
+	  comment: Cannot make straight int comparisons with dates. they must be compared with a date comparitor.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 25
+	  comment: Be sure to flatten datum at the same time as the tree when avl-flattening.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 2
+	  comment: The difference between empty-tree and return-tree is one is empty (duh).
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 6
+	  comment: Old values are not to be trusted. Ever.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 1
+	  comment: Dont muddle HTML output with data. Make it clean with strings.
+	  
+	- date: November 30, 2012
+	  type: Code
+	  fix time: 10
+	  comment: Linear regression should be based on the count, not actual values of xs.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 13
+	  comment: Be sure to give everything a link.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 62
+	  comment: Don't double link anything except for the final runnable module.
+	  
+	- date: December 2, 2012
+	  type: Code
+	  fix time: 2
+	  comment: Also dont use in-acl2 with modular code.
